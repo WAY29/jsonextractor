@@ -22,8 +22,10 @@ func main() {
 	str := `{"message": "This is not a valid JSON string \x0A"}`
 	fixed, ok := jsonextractor.FixJson([]byte(str))
 	fmt.Println(string(fixed)) // Output: {"message": "This is not a valid JSON string \u000a"}
+    fmt.Println(ok) // Output: true
     fixed, ok = FixJson([]byte(`{"abc": 123,}`))
 	fmt.Println(string(fixed)) // Output: {"abc": 123}
+    fmt.Println(ok) // Output: true
 }
 ```
 
