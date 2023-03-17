@@ -20,8 +20,10 @@ import (
 func main() {
     // fix invalid json escape
 	str := `{"message": "This is not a valid JSON string \x0A"}`
-	fixed := jsonextractor.FixJson([]byte(str))
+	fixed, ok := jsonextractor.FixJson([]byte(str))
 	fmt.Println(string(fixed)) // Output: {"message": "This is not a valid JSON string \u000a"}
+    fixed, ok = FixJson([]byte(`{"abc": 123,}`))
+	fmt.Println(string(fixed)) // Output: {"abc": 123}
 }
 ```
 
